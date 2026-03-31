@@ -1,64 +1,128 @@
-# 🎬 Popcorn Picks — Movie Recommendation System
+# 🍿 Popcorn Picks — Movie Recommendation System
 
-A content-based movie recommender built with Streamlit, powered by the **TMDB 5000 Movie Dataset** (~5,000 films).
+A **content-based movie recommender web app** built with Streamlit, powered by the **TMDB 5000 Movie Dataset (~5,000 films)**.
 
-## Features
-- **Content-based recommendations** (TF-IDF + Cosine Similarity on genres, cast, keywords, director)
-- **Filters**: Industry (Bollywood / Hollywood), Genre, Rating, Year Range, Runtime, Actor search
-- **Analytics tab**: Genre distribution, movies per year, rating histogram, industry split, top directors
-- **Sober dark-gold UI** with Playfair Display typography
+🔗 **Live Demo:** https://popcorn-picks-k18m01.streamlit.app/
+
+---
+
+## 🚀 Features
+
+* 🎯 **Smart Recommendations**
+  Content-based filtering using **TF-IDF + Cosine Similarity** on:
+
+  * Genres
+  * Cast
+  * Keywords
+  * Director
+
+* 🎛️ **Advanced Filtering System**
+
+  * Industry (Bollywood / Hollywood)
+  * Genre
+  * Rating
+  * Year Range
+  * Language
+  * Actor Search
+
+* 📊 **Analytics Dashboard**
+
+  * Genre distribution
+  * Movies per year
+  * Rating histogram
+  * Industry split
+  * Top directors
+
+* 🎨 **Premium UI**
+
+  * Dark cinematic theme
+  * Gold-accent design
+  * Interactive cards & posters
+  * Smooth user experience
+
+---
+
+## 🧠 How It Works
+
+1. Movies are converted into a **feature “soup”** combining:
+
+   * genres + keywords + cast + director
+
+2. Text is vectorized using **TF-IDF**
+
+3. Similarity between movies is computed using:
+   👉 **Cosine Similarity**
+
+4. Based on user input, the system returns **most similar movies**
 
 ---
 
 ## ▶ Run Locally
 
 ```bash
-# 1. Clone / unzip the project
-cd movie_recommender
+# Clone repository
+git clone https://github.com/your-username/popcorn-picks.git
+cd popcorn-picks
 
-# 2. Install dependencies
+# Install dependencies
 pip install -r requirements.txt
 
-# 3. Download data (one-time)
+# Download dataset (one-time)
 python download_data.py
 
-# 4. Launch
+# Run app
 streamlit run app.py
 ```
 
 ---
 
-## 🚀 Deploy to Streamlit Community Cloud (Free)
+## 🌐 Deployment
 
-1. Push this folder to a **public GitHub repo**  
-   (make sure `data/` is committed, or add `download_data.py` to `requirements.txt`'s pre-run hook)
+Deployed using **Streamlit Community Cloud**
 
-2. Go to → **https://share.streamlit.io**  
-   Sign in with GitHub → **"New app"**
+Steps:
 
-3. Fill in:
-   | Field | Value |
-   |---|---|
-   | Repository | `your-username/movie_recommender` |
-   | Branch | `main` |
-   | Main file path | `app.py` |
-
-4. Click **Deploy!** — it will auto-install from `requirements.txt`.
-
-> **Tip:** If you don't want to commit the CSVs, add a `startup.sh` or use  
-> `st.cache_data` to download them at first run (see `download_data.py`).
+1. Push code to GitHub
+2. Connect repo on Streamlit Cloud
+3. Select `app.py` → Deploy
 
 ---
 
-## Dataset
-- **TMDB 5000 Movies** — 4,803 films with budgets, genres, keywords, overview, ratings, runtime  
-- **TMDB 5000 Credits** — cast & crew for all films  
-- Source: [Kaggle TMDB Dataset](https://www.kaggle.com/datasets/tmdb/tmdb-movie-metadata)
+## 📁 Dataset
 
-## Tech Stack
-| Library | Use |
-|---|---|
-| Streamlit | UI & deployment |
-| scikit-learn | TF-IDF vectorisation + cosine similarity |
-| pandas / numpy | Data wrangling |
-| altair | Charts & analytics |
+* **TMDB 5000 Movies Dataset**
+* ~4,800 movies with metadata (genres, ratings, overview, etc.)
+* Source: https://www.kaggle.com/datasets/tmdb/tmdb-movie-metadata
+
+---
+
+## 🛠️ Tech Stack
+
+| Technology     | Purpose                    |
+| -------------- | -------------------------- |
+| Streamlit      | UI & deployment            |
+| scikit-learn   | TF-IDF & cosine similarity |
+| pandas / numpy | Data processing            |
+| Altair         | Data visualization         |
+| OMDB API       | Movie posters & metadata   |
+
+---
+
+## ✨ Future Improvements
+
+* 🔍 “Why this movie is recommended” explanation
+* ⭐ User preference learning
+* 📈 Trending / popular movies section
+* 👤 User profiles
+
+---
+
+## 👨‍💻 Author
+
+**Keshav Mittal**
+
+---
+
+## ⭐ If you like this project
+
+Give it a star on GitHub ⭐
