@@ -33,257 +33,142 @@ CSS = """
     --gdim:    #7a6230;
     --text:    #e8e2d6;
     --muted:   #7a7570;
-    --accent:  #e8a44a;
 }
 
+/* Base */
 html, body, [data-testid="stAppViewContainer"] {
     background: var(--bg) !important;
     color: var(--text) !important;
     font-family: 'DM Sans', sans-serif;
+
+    /* ✨ smooth page load animation */
+    animation: fadeIn 0.6s ease-in;
 }
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px);}
+    to { opacity: 1; transform: translateY(0);}
+}
+
+/* Sidebar */
 [data-testid="stSidebar"] {
     background: var(--surface) !important;
     border-right: 1px solid var(--border);
 }
 
+/* Hero */
 .hero-title {
     font-family: 'Playfair Display', serif;
-    font-size: 4rem; font-weight: 900; letter-spacing: -1px;
-    background: linear-gradient(135deg, #c9a84c 0%, #f5d98b 50%, #c9a84c 100%);
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    background-clip: text; line-height: 1.1; margin: 0;
+    font-size: 4rem;
+    font-weight: 900;
     text-align: center;
+    background: linear-gradient(135deg, #c9a84c, #f5d98b, #c9a84c);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    /* 🌟 subtle glow */
+    text-shadow: 0 0 15px rgba(201,168,76,0.25);
 }
+
 .hero-sub {
-    font-size: 1rem; color: var(--muted);
-    letter-spacing: 3px; text-transform: uppercase; margin-top: 6px;
     text-align: center;
+    color: var(--muted);
+    letter-spacing: 3px;
+    text-transform: uppercase;
 }
+
+/* Divider */
 .divider {
     height: 1px;
     background: linear-gradient(90deg, transparent, var(--gdim), transparent);
     margin: 1.5rem 0;
 }
 
+/* 🎬 Movie Card */
 .movie-card {
-    background: var(--card); border: 1px solid var(--border);
-    border-radius: 12px; padding: 1.1rem;
-    transition: border-color 0.2s, transform 0.2s;
-    position: relative; overflow: hidden;
-}
-.movie-card::before {
-    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
-    background: linear-gradient(90deg, var(--gdim), var(--gold));
-    opacity: 0; transition: opacity 0.2s;
-}
-.movie-card:hover { border-color: var(--gdim); transform: translateY(-3px); }
-.movie-card:hover::before { opacity: 1; }
-
-.movie-meta {
-    font-size: 0.92rem; color: var(--muted); margin-bottom: 8px;
-    display: flex; gap: 10px; flex-wrap: wrap; align-items: center;
-}
-.badge {
-    background: var(--border); border-radius: 4px; padding: 2px 9px;
-    font-size: 0.82rem; color: var(--muted);
-    text-transform: uppercase; letter-spacing: 0.5px;
-}
-.badge-hwood { background: rgba(201,168,76,0.15); color: #c9a84c; border: 1px solid #7a6230; }
-.badge-bwood { background: rgba(232,164,74,0.15); color: #e8a44a; border: 1px solid rgba(232,164,74,0.4); }
-.star { color: var(--gold); font-size: 1rem; }
-
-.poster {
-    border-radius: 8px; height: 210px;
-    display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
-    margin-bottom: 10px; position: relative; overflow: hidden;
-}
-.poster-initial {
-    font-family: 'Playfair Display', serif; font-size: 3.6rem; font-weight: 900;
-    color: rgba(255,255,255,0.9); text-shadow: 0 2px 12px rgba(0,0,0,0.5);
-    letter-spacing: -1px; z-index: 1;
-}
-.poster-year {
-    position: absolute; bottom: 8px; right: 10px;
-    font-size: 0.68rem; color: rgba(255,255,255,0.55); letter-spacing: 1px; z-index: 1;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.1rem;
+    transition: all 0.3s ease;
 }
 
+/* ✨ hover animation */
+.movie-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--gdim);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.6);
+}
+
+/* 🎥 Poster zoom */
+.movie-card img {
+    transition: transform 0.3s ease;
+    border-radius: 8px;
+}
+
+.movie-card:hover img {
+    transform: scale(1.08);
+}
+
+/* Stats box */
 .stat-box {
-    background: var(--card); border: 1px solid var(--border);
-    border-radius: 10px; padding: 1rem 1.2rem; text-align: center;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1rem;
+    text-align: center;
+    transition: all 0.3s ease;
 }
-.stat-num {
-    font-family: 'Playfair Display', serif; font-size: 2rem;
-    font-weight: 700; color: var(--gold);
-}
-.stat-label { font-size: 0.78rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
 
-/* ── Sidebar labels & section headers ── */
+.stat-box:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+}
+
+/* Sidebar labels */
 .sidebar-section {
-    font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase;
-    color: var(--gold); margin: 1.2rem 0 0.5rem;
-}
-[data-testid="stSidebar"] label,
-[data-testid="stSidebar"] .stMarkdown p {
-    color: var(--text) !important; font-size: 0.88rem !important;
-}
-
-/* ── Placeholder text — force visible on ALL inputs ── */
-input::placeholder,
-textarea::placeholder,
-[data-testid="stTextInput"] input::placeholder,
-[data-testid="stSidebar"] input::placeholder,
-[data-baseweb="input"] input::placeholder,
-[data-baseweb="textarea"] textarea::placeholder,
-::-webkit-input-placeholder,
-[data-testid="stSidebar"] ::-webkit-input-placeholder,
-[data-testid="stTextInput"] ::-webkit-input-placeholder {
-    color: #7a7570 !important;
-    opacity: 1 !important;
-    -webkit-text-fill-color: #7a7570 !important;
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin: 1rem 0 0.5rem;
 }
 
-/* ── All sidebar input widgets: dark background, light text ── */
-[data-testid="stSidebar"] [data-testid="stTextInput"] input,
-[data-testid="stSidebar"] [data-baseweb="input"] input,
-[data-testid="stSidebar"] input {
+/* Inputs */
+input, textarea {
     background: var(--card) !important;
-    border: 1px solid var(--border) !important;
     color: var(--text) !important;
-    border-radius: 8px !important;
-}
-[data-testid="stSidebar"] input::placeholder { color: var(--muted) !important; opacity: 1 !important; }
-
-/* ── Selectbox & multiselect: dark background + VISIBLE text ── */
-[data-testid="stSidebar"] [data-baseweb="select"] > div,
-[data-testid="stSidebar"] [data-testid="stSelectbox"] > div > div,
-[data-testid="stSidebar"] [data-testid="stMultiSelect"] > div > div,
-[data-baseweb="popover"] {
-    background: var(--card) !important;
-    border-color: var(--border) !important;
 }
 
-/* The selected value text (e.g. "All", "Weighted Rating", "Choose options") */
-[data-testid="stSidebar"] [data-baseweb="select"] [data-baseweb="value"],
-[data-testid="stSidebar"] [data-baseweb="select"] div[class*="placeholder"],
-[data-testid="stSidebar"] [data-baseweb="select"] div[class*="singleValue"],
-[data-testid="stSidebar"] [data-baseweb="select"] span,
-[data-testid="stSidebar"] [data-baseweb="select"] div,
-[data-testid="stSidebar"] [data-baseweb="select"] p,
-[data-testid="stSidebar"] [data-testid="stSelectbox"] div,
-[data-testid="stSidebar"] [data-testid="stSelectbox"] span,
-[data-testid="stSidebar"] [data-testid="stMultiSelect"] div,
-[data-testid="stSidebar"] [data-testid="stMultiSelect"] span {
-    color: #c9a84c !important;
-    -webkit-text-fill-color: #c9a84c !important;
-}
-
-/* Tags inside multiselect (e.g. Hollywood x, Bollywood x) */
-[data-testid="stSidebar"] [data-baseweb="tag"],
-[data-testid="stSidebar"] [data-baseweb="tag"] span {
-    color: #e8e2d6 !important;
-    -webkit-text-fill-color: #e8e2d6 !important;
-}
-
-/* Dropdown option list */
-[data-baseweb="menu"] li,
-[data-baseweb="menu"] [role="option"],
-[data-baseweb="popover"] li {
-    background: var(--card) !important;
-    color: #c9a84c !important;
-}
-[data-baseweb="menu"] li:hover,
-[data-baseweb="popover"] li:hover {
-    background: var(--border) !important;
-}
-
-/* ── Main area search box ── */
-[data-testid="stTextInput"] input {
-    background: var(--card) !important; border: 1px solid var(--border) !important;
-    color: var(--text) !important; border-radius: 8px !important;
-    font-size: 0.97rem !important;
-}
-[data-testid="stTextInput"] input::placeholder { color: var(--muted) !important; opacity: 1 !important; }
-[data-testid="stTextInput"] input:focus {
-    border-color: var(--gdim) !important;
-    box-shadow: 0 0 0 2px rgba(201,168,76,0.15) !important;
-}
-
-/* ── Buttons ── */
-.stButton > button {
-    background: linear-gradient(135deg, #b8922a, #c9a84c) !important;
-    color: #0d0d0d !important; font-weight: 600 !important;
-    border: none !important; border-radius: 8px !important;
-    padding: 0.5rem 1.4rem !important; transition: opacity 0.2s !important;
-}
-.stButton > button:hover { opacity: 0.85 !important; }
-
-/* ── Expander ── */
-[data-testid="stExpander"] {
-    background: var(--surface) !important; border: 1px solid var(--border) !important;
-    border-radius: 8px !important; margin-top: 4px !important;
-}
-[data-testid="stExpander"] summary {
-    color: var(--text) !important; font-family: 'Playfair Display', serif !important;
-    font-size: 1.1rem !important; font-weight: 700 !important; padding: 0.6rem 0.8rem !important;
-}
-[data-testid="stExpander"] summary:hover {
-    color: var(--gold) !important;
-    background: rgba(201,168,76,0.06) !important; border-radius: 8px !important;
-}
-
-/* ── Tabs ── */
-[data-testid="stTabs"] [role="tab"] {
-    color: var(--muted) !important; font-size: 1.05rem !important;
-    font-weight: 500 !important; background: transparent !important; border: none !important;
-    padding: 0.5rem 1.2rem !important;
-}
-[data-testid="stTabs"] [role="tab"][aria-selected="true"] {
-    color: var(--gold) !important; border-bottom: 2px solid var(--gold) !important;
-    font-weight: 700 !important;
-}
-[data-testid="stTabs"] [role="tab"]:hover { color: var(--text) !important; }
-
-/* ── Scrollbar ── */
-::-webkit-scrollbar { width: 5px; }
-::-webkit-scrollbar-track { background: var(--bg); }
-::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
-
-#MainMenu, footer, header { visibility: hidden; }
-[data-testid="stToolbar"] { display: none; }
-</style>
-"""
-st.markdown(CSS, unsafe_allow_html=True)
-st.markdown("""
-<style>
-
-/* 🔥 FIX: remove black overlay from multiselect tags */
+/* 🔥 TAG FIX (keep this always) */
 [data-baseweb="tag"] {
+    background-color: #ff4b4b !important;
+    color: white !important;
+    border-radius: 6px !important;
+    padding: 4px 10px !important;
     position: relative !important;
-    z-index: 10 !important;
+    z-index: 2 !important;
 }
 
-/* remove internal dark layers */
 [data-baseweb="tag"] * {
     background: transparent !important;
     box-shadow: none !important;
 }
 
-/* kill pseudo elements */
 [data-baseweb="tag"]::before,
 [data-baseweb="tag"]::after {
     display: none !important;
 }
 
-/* keep text above */
 [data-baseweb="tag"] span {
+    color: white !important;
     position: relative !important;
-    z-index: 20 !important;
+    z-index: 3 !important;
 }
 
 </style>
-""", unsafe_allow_html=True)
-
+"""
+st.markdown(CSS, unsafe_allow_html=True)
 # ─────────────────────────────────────────────────────────────────────────────
 # Constants
 # ─────────────────────────────────────────────────────────────────────────────
