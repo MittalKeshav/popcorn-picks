@@ -254,6 +254,35 @@ textarea::placeholder,
 </style>
 """
 st.markdown(CSS, unsafe_allow_html=True)
+st.markdown("""
+<style>
+
+/* 🔥 FIX: remove black overlay from multiselect tags */
+[data-baseweb="tag"] {
+    position: relative !important;
+    z-index: 10 !important;
+}
+
+/* remove internal dark layers */
+[data-baseweb="tag"] * {
+    background: transparent !important;
+    box-shadow: none !important;
+}
+
+/* kill pseudo elements */
+[data-baseweb="tag"]::before,
+[data-baseweb="tag"]::after {
+    display: none !important;
+}
+
+/* keep text above */
+[data-baseweb="tag"] span {
+    position: relative !important;
+    z-index: 20 !important;
+}
+
+</style>
+""", unsafe_allow_html=True)
 
 # ─────────────────────────────────────────────────────────────────────────────
 # Constants
